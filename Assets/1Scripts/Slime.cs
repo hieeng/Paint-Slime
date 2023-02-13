@@ -34,6 +34,7 @@ public class Slime : MonoBehaviour
 
     private void Update()
     {
+        rigid.velocity = Vector3.zero;
         Move();
         GatherPoint();
         if (Input.GetKeyDown("space"))
@@ -73,7 +74,7 @@ public class Slime : MonoBehaviour
     {
         if (agent.enabled == false)
             return;
-        if (agent.remainingDistance > 0.1f)
+        if (agent.remainingDistance > 0.5f)
             return;
         else
             transform.transform.position = agent.destination;
@@ -91,12 +92,13 @@ public class Slime : MonoBehaviour
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 3.0f, NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;
             }
         }
+        Debug.Log("1");
         result = Vector3.zero;
         return false;
     }
