@@ -33,7 +33,9 @@ public class AI : MonoBehaviour
     {
         if(Time.time - LastshotTime > ShotCoolDown)
         {
-            Instantiate(Projectile, ShotPos.transform.position, ShotPos.transform.rotation);
+            GameObject obj = GameManager.Instance.GetObj(1);
+            obj.transform.position = ShotPos.transform.position;
+
             LastshotTime = Time.time;
         }
     }
@@ -42,7 +44,7 @@ public class AI : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, RandPos) <= 0.1f)
         {
-            RandPos = new Vector3(Random.Range(0f, 4f), transform.position.y, transform.position.z);
+            RandPos = new Vector3(Random.Range(-4.5f, 4.5f), transform.position.y, transform.position.z);
         }
 
         else

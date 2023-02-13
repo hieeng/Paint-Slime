@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1760801934182101178}
   - component: {fileID: 1894103241245028327}
   - component: {fileID: 3159699216972504851}
-  - component: {fileID: -8590235206059826097}
-  m_Layer: 0
-  m_Name: Projectile
+  - component: {fileID: -2266619957841664393}
+  m_Layer: 10
+  m_Name: RedProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4831727814552441085}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8526686, y: -2.3539577, z: 10.073099}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &3607605828501747428
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97901c8e1611841b3930940a271ee59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 500
-  PaintParticle: {fileID: 31203345528292055, guid: f74c39808a474448e85fc86aa07e8bb0, type: 3}
---- !u!54 &-8590235206059826097
+  Speed: 10
+  PaintParticle: {fileID: 31203345528292055, guid: d6729ef46e21c42bfb33f1847d420679, type: 3}
+--- !u!54 &-2266619957841664393
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,5 +126,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 126
+  m_CollisionDetection: 0

@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
             GameObject obj = GameManager.Instance.GetObj(0);
             obj.transform.position = ShotPos.transform.position;
 
-            //var Bullet = Instantiate(Projectile, ShotPos.transform.position, ShotPos.transform.rotation);
-
             LastshotTime = Time.time;
         }
     }

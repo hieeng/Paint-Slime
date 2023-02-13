@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] float Speed = 10.0f;
+    [SerializeField] float Speed = 1.0f;
     [SerializeField] GameObject PaintParticle;
 
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
-        ChangeParticleColor();
     }
 
     void Update()
     {
-        
+        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
     }
 
 
@@ -29,14 +27,5 @@ public class Projectile : MonoBehaviour
     {
         var paint = Instantiate(PaintParticle, transform.position, transform.rotation);
         PaintParticle.GetComponent<ParticleSystem>().Play();
-    }
-
-    void ChangeParticleColor()
-    {
-        for(int i = 0; i < PaintParticle.GetComponent<Transform>().childCount; i++)
-        {
-            ParticleSystem.MainModule setting = PaintParticle.GetComponent<Transform>().GetChild(i).GetComponent<ParticleSystem>().main;
-            setting.startColor = GetComponent<MeshRenderer>().material.color;
-        }
     }
 }
