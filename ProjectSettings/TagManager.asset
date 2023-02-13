@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Land
   - Water
   - UI
   - WhiteSlime
   - BlueSlime
   - RedSlime
-  - BluePro
-  - RedPro
+  - BlueObj
+  - RedObj
   - 
   - 
   - 

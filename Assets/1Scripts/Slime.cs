@@ -6,14 +6,16 @@ using UnityEngine.AI;
 public class Slime : MonoBehaviour
 {
     [SerializeField] Mat mat;
+    [SerializeField] Transform[] point;
+    Rigidbody rigid;
     NavMeshAgent agent;
     Animator anim;
     Vector3 nextPoint;
 
-    int blue = 1;
-    int red = 2;
-    int blueProMask;
-    int redProMask;
+    [SerializeField] int speed;
+    int blue = 0;
+    int red = 1;
+
     int blueSlimeMask;
     int redSlimeMask;
 
@@ -22,21 +24,48 @@ public class Slime : MonoBehaviour
 
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        blueProMask = LayerMask.GetMask("BluePro");
-        redProMask = LayerMask.GetMask("RedPro");
         blueSlimeMask = LayerMask.GetMask("BlueSlime");
         redSlimeMask = LayerMask.GetMask("RedSlime");
+ 
     }
 
     private void Update()
     {
         Move();
+        GatherPoint();
         if (Input.GetKeyDown("space"))
         {
-            mat.changeMat(1);
-            Debug.Log("");
+            timeOver = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        //탄 맞을 때
+        if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
+        {
+            mat.changeMat(blue);
+            gameObject.layer = LayerMask.NameToLayer("BlueSlime");
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
+        {
+            mat.changeMat(red);
+            gameObject.layer = LayerMask.NameToLayer("RedSlime");
+        }
+
+        //싸울 때
+        if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
+        {
+            if (gameObject.layer == LayerMask.NameToLayer("RedSlime"))
+                Fight();
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("RedSlime"))
+        {
+            if (gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
+                Fight();
         }
     }
 
@@ -49,7 +78,7 @@ public class Slime : MonoBehaviour
         else
             transform.transform.position = agent.destination;
         
-        if (RandomPoint(transform.position, 5f, out nextPoint))
+        if (RandomPoint(transform.position, 3f, out nextPoint))
             agent.SetDestination(nextPoint);
         anim.SetBool("isMove", true);
 
@@ -72,17 +101,47 @@ public class Slime : MonoBehaviour
         return false;
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void GatherPoint()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("BluePro"))
+        if (!timeOver)
+            return;
+        if (doFight)
+            return;
+
+        if (gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
+            Point(blue);
+        else
+            Point(red);
+    }
+
+    private void Point(int color)
+    {
+        agent.enabled = false;
+        var pointVec = point[color].position - rigid.position;
+        var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
+        rigid.MovePosition(rigid.position + pointNextVec);
+        transform.LookAt(point[color]);
+    
+    }
+
+    private void Fight()
+    {
+        if (!doFight)
+            return;
+        StartCoroutine(CoroutineDie());
+    }
+
+    IEnumerator CoroutineDie()
+    {
+        float time  = 0;
+
+        while (time <= 3f)
         {
-            mat.changeMat(blue);
-            gameObject.layer = blueSlimeMask;
+            time += Time.deltaTime;
+            yield return null;
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("RedPro"))
-        {
-            mat.changeMat(red);
-            gameObject.layer = redSlimeMask;
-        }
+
+        gameObject.SetActive(false);
+        //파티클
     }
 }
