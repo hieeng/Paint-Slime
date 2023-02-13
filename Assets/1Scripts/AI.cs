@@ -17,8 +17,6 @@ public class AI : MonoBehaviour
 
     void Start()
     {
-        Projectile.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
-
         RandPos = new Vector3(Random.Range(-4.5f, 4.5f), transform.position.y, transform.position.z);
     }
 
