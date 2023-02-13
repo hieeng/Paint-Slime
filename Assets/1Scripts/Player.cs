@@ -16,12 +16,11 @@ public class Player : MonoBehaviour
     float LastMousePos; // 처음 마우스가 눌린 위치
     float XVecter; // 현재 마우스 위치 - 처음 마우스가 눌린 위치
 
-    float shotCoolDown = 3.0f;  // 샷 쿨타임
+    [SerializeField] float shotCoolDown = 3.0f;  // 샷 쿨타임
     float LastshotTime = 0.0f; // 마지막으로 사격한 시간
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -36,7 +35,11 @@ public class Player : MonoBehaviour
     {
         if(Time.time - LastshotTime > shotCoolDown)
         {
-            Instantiate(Projectile, ShotPos.transform.position, ShotPos.transform.rotation);
+            GameObject obj = GameManager.Instance.GetObj(0);
+            obj.transform.position = ShotPos.transform.position;
+
+            //var Bullet = Instantiate(Projectile, ShotPos.transform.position, ShotPos.transform.rotation);
+
             LastshotTime = Time.time;
         }
     }
@@ -68,6 +71,12 @@ public class Player : MonoBehaviour
 
     void MovePosition()
     {
+        transform.position = ClampPos(transform.position);
         transform.position += Vector3.right * XVecter * Speed * Time.deltaTime;
+    }
+
+    Vector3 ClampPos(Vector3 pos)
+    {
+        return new Vector3(Mathf.Clamp(transform.position.x, -4.5f, 4.5f), transform.position.y, transform.position.z);
     }
 }

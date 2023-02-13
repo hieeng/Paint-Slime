@@ -22,4 +22,9 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
     }
+
+    public GameObject GetObj(int value)
+    {
+        return objectManager.Get(value);
+    }
 }

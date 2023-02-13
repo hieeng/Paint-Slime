@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] prefabs;
+    [SerializeField] GameObject[] prefabs; // 0번 : Projectile
     List<GameObject>[] pools;
 
     private void Awake()

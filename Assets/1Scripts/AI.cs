@@ -11,13 +11,15 @@ public class AI : MonoBehaviour
     [SerializeField] GameObject ShotPos; // 총알 발사 위치
 
     Vector3 RandPos;
-    float ShotCoolDown = 3.0f;  // 샷 쿨타임
+    [SerializeField] float ShotCoolDown = 1.0f;  // 샷 쿨타임
     float LastshotTime = 0.0f; // 마지막으로 사격한 시간
 
 
     void Start()
     {
-        RandPos = new Vector3(Random.Range(0f, 4f), transform.position.y, transform.position.z);
+        Projectile.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
+
+        RandPos = new Vector3(Random.Range(-4.5f, 4.5f), transform.position.y, transform.position.z);
     }
 
     void Update()
