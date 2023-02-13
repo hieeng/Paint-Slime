@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Slime : MonoBehaviour
 {
-    [SerializeField] Mat mat;
+    [SerializeField] Mat[] mat;
     [SerializeField] Transform[] point;
     Rigidbody rigid;
     NavMeshAgent agent;
@@ -27,9 +27,13 @@ public class Slime : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+    }
+
+    private void OnEnable() 
+    {
         blueSlimeMask = LayerMask.GetMask("BlueSlime");
         redSlimeMask = LayerMask.GetMask("RedSlime");
- 
+        anim.SetFloat("rand", Random.Range(0f, 1f));
     }
 
     private void Update()
@@ -48,12 +52,14 @@ public class Slime : MonoBehaviour
         //탄 맞을 때
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
         {
-            mat.changeMat(blue);
+            mat[0].changeMat(blue);
+            mat[1].changeMat(blue);
             gameObject.layer = LayerMask.NameToLayer("BlueSlime");
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
         {
-            mat.changeMat(red);
+            mat[0].changeMat(red);
+            mat[1].changeMat(red);
             gameObject.layer = LayerMask.NameToLayer("RedSlime");
         }
 
@@ -61,12 +67,12 @@ public class Slime : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
         {
             if (gameObject.layer == LayerMask.NameToLayer("RedSlime"))
-                Fight();
+                Die();
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedSlime"))
         {
             if (gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
-                Fight();
+                Die();
         }
     }
 
@@ -74,7 +80,7 @@ public class Slime : MonoBehaviour
     {
         if (agent.enabled == false)
             return;
-        if (agent.remainingDistance > 0.5f)
+        if (agent.remainingDistance > 0.05f)
             return;
         else
             transform.transform.position = agent.destination;
@@ -98,7 +104,6 @@ public class Slime : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("1");
         result = Vector3.zero;
         return false;
     }
@@ -120,13 +125,21 @@ public class Slime : MonoBehaviour
     {
         agent.enabled = false;
         var pointVec = point[color].position - rigid.position;
+
+        Debug.Log(Vector3.Distance(pointVec, transform.position));
+
+        if (Vector3.Distance(pointVec, transform.position) < 5f)
+        {
+            speed = 0.01f;
+        }
+
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
 
         rigid.MovePosition(rigid.position + pointNextVec);
         transform.LookAt(point[color]);
     }
 
-    private void Fight()
+    private void Die()
     {
         if (!doFight)
             return;
