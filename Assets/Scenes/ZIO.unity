@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102917258945508208, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: point.Array.size
       value: 2
@@ -142,6 +150,10 @@ PrefabInstance:
       propertyPath: point.Array.data[1]
       value: 
       objectReference: {fileID: 1379408588}
+    - target: {fileID: 102917258945508213, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6280319941921500280, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -353,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547893739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.93}
+  m_LocalPosition: {x: 0, y: 0.5, z: 2.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 396102736}
@@ -617,6 +629,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102917258945508208, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: point.Array.size
       value: 2
@@ -629,6 +649,10 @@ PrefabInstance:
       propertyPath: point.Array.data[1]
       value: 
       objectReference: {fileID: 1379408588}
+    - target: {fileID: 102917258945508213, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6280319941921500280, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -867,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379408587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 14.8}
+  m_LocalPosition: {x: 0, y: 0.5, z: 14.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 396102736}
@@ -880,6 +904,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102917258945508208, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: point.Array.size
       value: 2
@@ -892,6 +924,10 @@ PrefabInstance:
       propertyPath: point.Array.data[1]
       value: 
       objectReference: {fileID: 1379408588}
+    - target: {fileID: 102917258945508213, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6280319941921500280, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1092,6 +1128,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 102917258945508208, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 102917258945508209, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: point.Array.size
       value: 2
@@ -1104,6 +1148,10 @@ PrefabInstance:
       propertyPath: point.Array.data[1]
       value: 
       objectReference: {fileID: 1379408588}
+    - target: {fileID: 102917258945508213, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6280319941921500280, guid: b009f86511bfa4dea97bec7b62d82d2d, type: 3}
       propertyPath: m_RootOrder
       value: 7

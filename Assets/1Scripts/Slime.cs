@@ -12,7 +12,7 @@ public class Slime : MonoBehaviour
     Animator anim;
     Vector3 nextPoint;
 
-    [SerializeField] int speed;
+    [SerializeField] float speed;
     int blue = 0;
     int red = 1;
 
@@ -119,9 +119,9 @@ public class Slime : MonoBehaviour
         agent.enabled = false;
         var pointVec = point[color].position - rigid.position;
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
+
         rigid.MovePosition(rigid.position + pointNextVec);
         transform.LookAt(point[color]);
-    
     }
 
     private void Fight()
