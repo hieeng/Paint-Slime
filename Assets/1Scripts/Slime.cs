@@ -34,7 +34,10 @@ public class Slime : MonoBehaviour
     {
         Move();
         if (Input.GetKeyDown("space"))
+        {
             mat.changeMat(1);
+            Debug.Log("");
+        }
     }
 
     private void Move()
