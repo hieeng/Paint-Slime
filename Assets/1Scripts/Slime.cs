@@ -126,9 +126,9 @@ public class Slime : MonoBehaviour
         agent.enabled = false;
         var pointVec = point[color].position - rigid.position;
 
-        Debug.Log(Vector3.Distance(pointVec, transform.position));
+        Debug.Log(pointVec.magnitude);
 
-        if (Vector3.Distance(pointVec, transform.position) < 5f)
+        if (pointVec.magnitude < 5f)
         {
             speed = 0.01f;
         }
