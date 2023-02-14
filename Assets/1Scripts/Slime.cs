@@ -128,9 +128,9 @@ public class Slime : MonoBehaviour
 
         Debug.Log(pointVec.magnitude);
 
-        if (pointVec.magnitude < 5f)
+        if (pointVec.magnitude < 1f)
         {
-            speed = 0.01f;
+            speed = 0.1f;
         }
 
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
