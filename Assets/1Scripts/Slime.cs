@@ -51,17 +51,9 @@ public class Slime : MonoBehaviour
     {
         //탄 맞을 때
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
-        {
-            mat[0].changeMat(blue);
-            mat[1].changeMat(blue);
-            gameObject.layer = LayerMask.NameToLayer("BlueSlime");
-        }
+            Hit(blue);
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
-        {
-            mat[0].changeMat(red);
-            mat[1].changeMat(red);
-            gameObject.layer = LayerMask.NameToLayer("RedSlime");
-        }
+            Hit(red);
 
         //싸울 때
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
@@ -74,6 +66,18 @@ public class Slime : MonoBehaviour
             if (gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
                 Die();
         }
+    }
+
+    private void Hit(int color)
+    {
+        mat[0].changeMat(color);
+        mat[1].changeMat(color);
+        anim.SetTrigger("isHit");
+        
+        if (color == blue)
+            gameObject.layer = LayerMask.NameToLayer("BlueSlime");
+        else
+            gameObject.layer = LayerMask.NameToLayer("RedSlime");
     }
 
     private void Move()
@@ -125,18 +129,16 @@ public class Slime : MonoBehaviour
     {
         agent.enabled = false;
         var pointVec = point[color].position - rigid.position;
-
-        Debug.Log(pointVec.magnitude);
+        transform.LookAt(point[color]);
 
         if (pointVec.magnitude < 1f)
         {
-            speed = 0.1f;
+            speed = 0.05f;
         }
 
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
 
         rigid.MovePosition(rigid.position + pointNextVec);
-        transform.LookAt(point[color]);
     }
 
     private void Die()
