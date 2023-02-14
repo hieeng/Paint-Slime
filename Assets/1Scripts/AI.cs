@@ -29,6 +29,8 @@ public class AI : MonoBehaviour
 
     void TryShot()
     {
+        if (GameManager.Instance.timeOver)
+            return;
         if(Time.time - LastshotTime > ShotCoolDown)
         {
             GameObject obj = GameManager.Instance.GetObj(1);

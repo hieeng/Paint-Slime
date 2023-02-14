@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     void TryShot()
     {
+        if (GameManager.Instance.timeOver)
+            return;
         if(Time.time - LastshotTime > shotCoolDown)
         {
             GameObject obj = GameManager.Instance.GetObj(0);

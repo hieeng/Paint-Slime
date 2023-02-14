@@ -18,12 +18,17 @@ public class StickMan : MonoBehaviour
     protected int red = 1;
     protected int layer;
     protected GameObject obj;
+    [HideInInspector] public bool firstFight = true;
+    float gatherTime = 0f;
+    float deadTime;
 
     protected void Init()
     {
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        anim.SetFloat("rand", Random.Range(0f, 1f));
+        deadTime = Random.Range(2f, 3f);
     }
 
     protected void Move()
@@ -55,26 +60,6 @@ public class StickMan : MonoBehaviour
         }
         result = Vector3.zero;
         return false;
-    }
-
-    protected void GatherPoint(Transform point)
-    {
-        if (!GameManager.Instance.timeOver)
-            return;
-        Point(point);
-    }
-
-    private void Point(Transform point)
-    {
-        agent.enabled = false;
-        var pointVec = point.position - rigid.position;
-        transform.LookAt(point);
-
-        if (pointVec.magnitude < 1f)
-            speed = 0.05f;
-
-        var pointNexVec = pointVec.normalized * speed * Time.deltaTime;
-        rigid.MovePosition(rigid.position + pointNexVec);
     }
 
     protected void Hit(int color) 
@@ -109,12 +94,16 @@ public class StickMan : MonoBehaviour
         agent.speed = 1.5f;
     }
 
-    protected void GaterPoint()
+    protected void GatherPoint()
     {
         if (!GameManager.Instance.timeOver)
             return;
-
+        if (GameManager.Instance.timeFight)
+            return;
+        gatherTime += Time.deltaTime;
         Point();
+        if (gatherTime >= 2f)
+            GameManager.Instance.timeFight = true;
     }
 
     private void Point()
@@ -122,10 +111,11 @@ public class StickMan : MonoBehaviour
         agent.enabled = false;
         var pointVec = point.position - rigid.position;
         transform.LookAt(point);
+        speed = pointVec.magnitude;
 
         if (pointVec.magnitude < 1f)
         {
-            speed = 0.05f;
+            speed = 0.1f;
         }
 
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
@@ -135,7 +125,7 @@ public class StickMan : MonoBehaviour
 
     protected void Target(int layer)
     {
-        if (!GameManager.Instance.timeOver)
+        if (!GameManager.Instance.timeFight)
             return;
 
         Collider[] cols = Physics.OverlapSphere(this.transform.position, 10f, layer);
@@ -153,12 +143,12 @@ public class StickMan : MonoBehaviour
                 }
                 else
                 {
-                temp = Vector3.Distance(cols[i].transform.position, transform.position);
-                if (temp < min)
-                {
-                    min = temp;
-                    target = cols[i].gameObject;
-                }
+                    temp = Vector3.Distance(cols[i].transform.position, transform.position);
+                    if (temp < min)
+                    {
+                        min = temp;
+                        target = cols[i].gameObject;
+                    }
                 }
             }
         }
@@ -173,6 +163,7 @@ public class StickMan : MonoBehaviour
     {
         if (target == null)
             return;
+        speed = 1.5f;
         var dirVec = target.transform.position - rigid.position;
         var nextVec = dirVec.normalized * speed * Time.deltaTime;
  
@@ -189,7 +180,7 @@ public class StickMan : MonoBehaviour
     {
         float time  = 0;
 
-        while (time <= 3f)
+        while (time <= deadTime)
         {
             time += Time.deltaTime;
             yield return null;

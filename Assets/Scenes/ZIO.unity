@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &273169617
 Animator:
   serializedVersion: 3
@@ -705,6 +706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &392181061
 Animator:
   serializedVersion: 3
@@ -1140,6 +1142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!195 &683304136
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1344,6 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &778242064
 Animator:
   serializedVersion: 3
@@ -1526,6 +1530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &919821481
 Animator:
   serializedVersion: 3
@@ -1911,6 +1916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &1085531430
 Animator:
   serializedVersion: 3
@@ -2684,6 +2690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &1298203728
 Animator:
   serializedVersion: 3
@@ -2914,6 +2921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &1434330357
 Animator:
   serializedVersion: 3
@@ -3096,6 +3104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
+  firstFight: 1
 --- !u!95 &1650157513
 Animator:
   serializedVersion: 3
@@ -3193,8 +3202,9 @@ MonoBehaviour:
   stickManRed: {fileID: 1111013697}
   pointBlue: {fileID: 1218392124}
   pointRed: {fileID: 1974468968}
-  gameTime: 20
+  gameTime: 10
   timeOver: 0
+  timeFight: 0
 --- !u!4 &1778623588
 Transform:
   m_ObjectHideFlags: 0

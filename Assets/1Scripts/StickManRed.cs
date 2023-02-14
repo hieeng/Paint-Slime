@@ -19,9 +19,9 @@ public class StickManRed : StickMan
     private void Update() 
     {
         Move();
-        GaterPoint();
+        GatherPoint();
         Target(layer);
-        //ToMoveTarget();
+        ToMoveTarget();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -33,10 +33,16 @@ public class StickManRed : StickMan
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
             HitAction();
 
-        if (GameManager.Instance.timeOver)
+        if (GameManager.Instance.timeFight)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
+            {
+                var check = other.gameObject.GetComponent<StickManBlue>().firstFight;
+                if (!check)
+                    return;
+                firstFight = false;
                 Die();
+            }
         }
     }
 }

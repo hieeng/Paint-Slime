@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public float gameTime = 20f;
     [HideInInspector] public bool timeOver = false;
+    [HideInInspector] public bool timeFight = false;
 
     static public GameManager Instance;
     
