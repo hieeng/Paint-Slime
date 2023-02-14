@@ -12,10 +12,14 @@ public class StickManWhite : StickMan
     private void Update() 
     {
         Move();
-        if (Input.GetKeyDown("space"))
-        {
-            
-        }
+        TimeOver();
+    }
+
+    private void TimeOver()
+    {
+        if (!GameManager.Instance.timeOver)
+            return;
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision other) 
