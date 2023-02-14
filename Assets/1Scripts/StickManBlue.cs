@@ -21,7 +21,7 @@ public class StickManBlue : StickMan
         Move();
         GaterPoint();
         Target(layer);
-        ToMoveTarget();
+        //ToMoveTarget();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -29,7 +29,9 @@ public class StickManBlue : StickMan
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
             HitAction();
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
+        {
             Hit(red);
+        }
 
         if (GameManager.Instance.timeOver)
         {

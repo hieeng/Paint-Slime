@@ -11,7 +11,7 @@ public class StickMan : MonoBehaviour
     Vector3 nextPoint;
 
     [SerializeField] float speed;
-    GameObject target;
+    [SerializeField]GameObject target;
 
     protected Transform point;
     protected int blue = 0;
@@ -85,13 +85,14 @@ public class StickMan : MonoBehaviour
             obj = GameManager.Instance.GetRed(0);
         
         obj.transform.position = transform.position;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     protected void HitAction()
     {
         anim.SetTrigger("isHit");
-        StartCoroutine(CoroutineHit());
+        //StartCoroutine(CoroutineHit());
     }
 
     protected IEnumerator CoroutineHit()

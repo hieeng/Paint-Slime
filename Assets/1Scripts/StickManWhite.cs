@@ -14,7 +14,7 @@ public class StickManWhite : StickMan
         Move();
         if (Input.GetKeyDown("space"))
         {
-            Hit(blue);
+            
         }
     }
 

@@ -20,7 +20,8 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision other) 
     {
         Play_PaintParticle();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     void Play_PaintParticle()

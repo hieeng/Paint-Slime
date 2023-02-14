@@ -21,13 +21,15 @@ public class StickManRed : StickMan
         Move();
         GaterPoint();
         Target(layer);
-        ToMoveTarget();
+        //ToMoveTarget();
     }
 
     private void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
+        {
             Hit(blue);
+        }
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
             HitAction();
 

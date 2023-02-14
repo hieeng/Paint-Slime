@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -19,14 +20,14 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject select = null;
 
-        foreach (GameObject item in pools[index])
+/*         foreach (GameObject item in pools[index])
         {
             if (!item.activeSelf)
             {
                 select = item;
                 select.SetActive(true);
             }
-        }
+        } */
 
         if (!select)
         {
