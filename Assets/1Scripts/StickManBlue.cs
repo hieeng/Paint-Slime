@@ -62,7 +62,7 @@ public class StickManBlue : StickMan
         }
         GameManager.Instance.NumBlue--;
         gameObject.SetActive(false);
-        //파티클
+        BloodParticle();
     }
 
     private void MoveKing()
@@ -86,5 +86,13 @@ public class StickManBlue : StickMan
             return;
         anim.SetBool("isWin", true);
         transform.LookAt(GameManager.Instance.pointBlue);
+    }
+
+    void BloodParticle()
+    {
+        var blood = GameManager.Instance.GetObj(2);
+        blood.transform.position = transform.position;
+        blood.transform.rotation = Quaternion.identity;
+        blood.GetComponent<ParticleSystem>().Play();
     }
 }

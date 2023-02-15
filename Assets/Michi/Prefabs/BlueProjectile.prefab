@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 10
   PaintParticle: {fileID: 31203345528292055, guid: f74c39808a474448e85fc86aa07e8bb0, type: 3}
+  ObjNum: 2
 --- !u!54 &2572001640765571439
 Rigidbody:
   m_ObjectHideFlags: 0
