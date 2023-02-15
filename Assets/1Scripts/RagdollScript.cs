@@ -8,7 +8,10 @@ public class RagdollScript : MonoBehaviour
     [SerializeField] Rigidbody ThisRig; // Root의 리지드바디
     [SerializeField] Rigidbody KnockBackBone = null; // 넉백시 날아갈 본 (허리)
     [SerializeField] public float KnockBackPower = 1000.0f; // 넉백 파워
-    [SerializeField] public float KnockBackHeight = 50.0f; // 넉백 높이
+    [SerializeField] Vector3 forceVec; // 넉백 방향
+
+    [SerializeField] GameObject FireParticle;
+
     Collider[] col = null; // 래그돌의 콜라이더 배열
     Rigidbody[] rig = null; // 래글돌의 리지드바디 배열
 
@@ -51,13 +54,40 @@ public class RagdollScript : MonoBehaviour
         }
     }
 
+    void SetRagdollSink(bool act)
+    {
+        for(int i = 0, cnt = col.Length; i < cnt; i++)
+        {
+            var rigid = rig[i];
+            if (null == rigid) continue;
+
+            rigid.isKinematic = !act;
+        }
+        
+        for (int i = 0, cnt = col.Length; i < cnt; i++)
+        {
+            var collider = col[i];
+            if (null == collider)
+                continue;
+
+            collider.isTrigger = act;
+        }
+        // Destroy(this.gameObject, 2.0f); // Sink된 뒤 2초뒤 파괴
+    }
+
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     SetRagdoll(true);
-        //     KnockBackBone.AddForce(Vector3.back * KnockBackPower + Vector3.up * KnockBackHeight);
-        //     Debug.Log("BOOM");
-        // }
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(gameObject.name == "RedKing")    KnockBack();
+        }
+    }
+
+    void KnockBack()
+    {
+        FireParticle.SetActive(true);
+        SetRagdoll(true);
+        KnockBackBone.AddForce(forceVec * KnockBackPower);
+        SetRagdollSink(true);
     }
 }

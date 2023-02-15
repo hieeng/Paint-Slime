@@ -77,6 +77,6 @@ public class Player : MonoBehaviour
 
     Vector3 ClampPos(Vector3 pos)
     {
-        return new Vector3(Mathf.Clamp(transform.position.x, -4.5f, 4.5f), transform.position.y, transform.position.z);
+        return new Vector3(Mathf.Clamp(transform.position.x, -4.0f, 4.0f), transform.position.y, transform.position.z);
     }
 }
