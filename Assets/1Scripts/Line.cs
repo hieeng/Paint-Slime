@@ -9,6 +9,7 @@ public class Line : MonoBehaviour
     public Transform[] transforms;
     protected bool first = true;
     protected bool first2 = true;
+    int idx;
 
     protected void Get()
     {
@@ -33,12 +34,12 @@ public class Line : MonoBehaviour
             time += Time.deltaTime;
         }
 
-        if (transform.childCount <= 2)
-            yield break;
-
         transforms = new Transform[transform.childCount];
         for (int i = 0, size = transform.childCount; i < size; i++)
             transforms[i] = transform.GetChild(i);
+
+        if (transform.childCount <= 2)
+            yield break;
 
         orderer.Transforms.Clear();
         orderer.Transforms.AddRange(transforms);
@@ -68,13 +69,14 @@ public class Line : MonoBehaviour
     IEnumerator CoroutineMovePos()
     {
         float time = 0;
+        FindMinIdx();
 
-        if (transform.childCount < 2)
+        if (transform.childCount <= 2)
             yield break;
 
         while (time <= 1f)
         {
-            //orderer.ApplyCubeOrder(CubeAnchor.Center, 7, 2);
+            orderer.ApplyCubeOrder(CubeAnchor.Custom, 5, 2, idx);
             time += Time.deltaTime;
 
             yield return null;
@@ -97,5 +99,30 @@ public class Line : MonoBehaviour
         if (GameManager.Instance.doFight)
             return;
         transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, 3f * Time.deltaTime);
+    }
+
+    private void FindMinIdx()
+    {
+        float temp;
+        float min = 0;
+
+        for (int i = 0, size = transform.childCount; i < size; i++)
+        {
+            if (i == 0)
+            {
+                min = Vector3.Distance(transform.position, transforms[i].position);
+                idx = i;
+            }
+            else
+            {
+                temp = Vector3.Distance(transform.position, transforms[i].position);
+
+                if (temp < min)
+                {
+                    min = temp;
+                    idx = i;
+                }
+            }
+        }
     }
 }

@@ -126,28 +126,6 @@ public class StickMan : MonoBehaviour
         rigid.MovePosition(rigid.position + pointNextVec);
     }
 
-    protected void SpritePoint()
-    {
-        if (!GameManager.Instance.timeFight)
-            return;
-        if (gatherTime >= 1f)
-            return;
-
-        gatherTime += Time.deltaTime;
-        SPoint();
-    }
-
-    private void SPoint()
-    {
-        var pointVec = (rigid.position - point.position) * 5;
-        speed = 1f;
-        pointVec.y = 0f; pointVec.z = 0f;
-        transform.LookAt(GameManager.Instance.pointRed);
-
-        var pointNexVec = pointVec.normalized * speed * Time.deltaTime;
-        rigid.MovePosition(rigid.position + pointNexVec);
-    }
-
     protected void Target(int layer)
     {
         if (!GameManager.Instance.timeFight)
@@ -188,7 +166,7 @@ public class StickMan : MonoBehaviour
     {
         if (target == null)
             return;
-        speed = 0.3f;
+        speed = 0.5f;
         var dirVec = target.transform.position - rigid.position;
         var nextVec = dirVec.normalized * speed * Time.deltaTime;
  

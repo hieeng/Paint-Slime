@@ -24,7 +24,7 @@ public class StickManBlue : StickMan
     {
         Move();
         GatherPoint();
-        SpritePoint();
+        //SpritePoint();
         OffFightAnim();
         MoveKing();
         Dance();
