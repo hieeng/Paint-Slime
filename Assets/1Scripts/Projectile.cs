@@ -7,12 +7,15 @@ public class Projectile : MonoBehaviour
     [SerializeField] float Speed = 1.0f;
     [SerializeField] GameObject PaintParticle;
 
+    //[SerializeField] int ObjNum;
+
     void Start()
     {
     }
 
     void Update()
     {
+        if(GameManager.Instance.timeOver == true) Destroy(gameObject);
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
     }
 

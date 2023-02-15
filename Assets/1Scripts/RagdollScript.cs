@@ -72,7 +72,7 @@ public class RagdollScript : MonoBehaviour
 
             collider.isTrigger = act;
         }
-        // Destroy(this.gameObject, 2.0f); // Sink된 뒤 2초뒤 파괴
+        Destroy(this.gameObject, 10.0f); // Sink된 뒤 10초뒤 파괴
     }
 
     public void KnockBack()
@@ -82,5 +82,14 @@ public class RagdollScript : MonoBehaviour
         KnockBackBone.AddForce(forceVec * KnockBackPower);
         SetRagdollSink(true);
         GameManager.Instance.SetCamera();
+    }
+
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            KnockBack();
+        }
     }
 }
