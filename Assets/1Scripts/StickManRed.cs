@@ -76,6 +76,14 @@ public class StickManRed : StickMan
             GameManager.Instance.SetCamera();
         }
         gameObject.SetActive(false);
-        //파티클
+        BloodParticle();
+    }
+
+    void BloodParticle()
+    {
+        var blood = GameManager.Instance.GetObj(3);
+        blood.transform.position = transform.position;
+        blood.transform.rotation = Quaternion.identity;
+        blood.GetComponent<ParticleSystem>().Play();
     }
 }

@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float Speed = 1.0f;
     [SerializeField] GameObject PaintParticle;
 
-    //[SerializeField] int ObjNum;
+    [SerializeField] int ObjNum;
 
     void Start()
     {
@@ -29,7 +29,11 @@ public class Projectile : MonoBehaviour
 
     void Play_PaintParticle()
     {
-        var paint = Instantiate(PaintParticle, transform.position, transform.rotation);
-        PaintParticle.GetComponent<ParticleSystem>().Play();
+        var paint = GameManager.Instance.GetObj(ObjNum);
+        paint.transform.position = transform.position;
+        paint.transform.rotation = transform.rotation;
+        paint.GetComponent<ParticleSystem>().Play();
+        // var paint = Instantiate(PaintParticle, transform.position, transform.rotation);
+        // PaintParticle.GetComponent<ParticleSystem>().Play();
     }
 }
