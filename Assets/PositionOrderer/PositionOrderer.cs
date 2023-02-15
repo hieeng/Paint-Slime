@@ -143,7 +143,7 @@ namespace PositionOrder {
                 curr_col = i % col;
                 curr_row = (i % floor_count) / col;
                 dist.Set ((curr_col - start_col) * Distance_X, (start_height - curr_height) * Distance_Y, (start_row - curr_row) * Distance_Z);
-                Transforms[i].position = Vector3.Lerp(Transforms[i].position, startPos + dist, 0.5f * Time.deltaTime);
+                Transforms[i].position = Vector3.Lerp(Transforms[i].position, startPos + dist, 5f * Time.deltaTime);
             }
         }
 

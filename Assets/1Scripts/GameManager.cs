@@ -15,10 +15,16 @@ public class GameManager : MonoBehaviour
 
     public Transform pointBlue;
     public Transform pointRed;
+    public Transform king;
 
     public float gameTime = 20f;
+    public int NumBlue = 0;
+    public int NumRed = 0;
     [HideInInspector] public bool timeOver = false;
     [HideInInspector] public bool timeFight = false;
+    [HideInInspector] public bool doFight = false;
+    public bool allKill = false;
+    public bool isWin = false;
 
     static public GameManager Instance;
     

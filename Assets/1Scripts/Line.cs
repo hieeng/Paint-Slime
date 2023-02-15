@@ -7,14 +7,10 @@ public class Line : MonoBehaviour
 {
     PositionOrderer orderer = new PositionOrderer();
     public Transform[] transforms;
-    bool first = true;
+    protected bool first = true;
+    protected bool first2 = true;
 
-    private void Update() 
-    {
-        Get();
-    }
-
-    private void Get()
+    protected void Get()
     {
         if (!GameManager.Instance.timeOver)
             return;
@@ -22,31 +18,12 @@ public class Line : MonoBehaviour
             return;
 
         first = false;
-        Debug.Log("#");
 
-        StartCoroutine(CoroutineWait(3f));
-
-        if (transform.childCount <= 2)
-            return;
-
-        transforms = new Transform[transform.childCount];
-        for (int i = 0, size = transform.childCount; i < size; i++)
-            transforms[i] = transform.GetChild(i);
-
-        orderer.Transforms.Clear();
-        orderer.Transforms.AddRange(transforms);
-
-        orderer.Distance_X = 0.5f;
-        orderer.Distance_Y = 0f;
-        orderer.Distance_Z = 0.5f;
-
-        StartCoroutine(CoroutineWait(1f));
-
-        Debug.Log(("@"));
-        Move();
+        StartCoroutine(CoroutineGet(2f));
+        StartCoroutine(CoroutineSort(2.5f));
     }
 
-    IEnumerator CoroutineWait(float dealyTime)
+    IEnumerator CoroutineGet(float dealyTime)
     {
         float time = 0f;
 
@@ -56,9 +33,34 @@ public class Line : MonoBehaviour
             time += Time.deltaTime;
         }
 
+        if (transform.childCount <= 2)
+            yield break;
+
+        transforms = new Transform[transform.childCount];
+        for (int i = 0, size = transform.childCount; i < size; i++)
+            transforms[i] = transform.GetChild(i);
+
+        orderer.Transforms.Clear();
+        orderer.Transforms.AddRange(transforms);
+
+        orderer.Distance_X = 0.8f;
+        orderer.Distance_Y = 0f;
+        orderer.Distance_Z = 0.5f;
     }
 
-    private void Move()
+    IEnumerator CoroutineSort(float dealyTime)
+    {
+        float time = 0f;
+
+        while (time <= dealyTime)
+        {
+            yield return null;
+            time += Time.deltaTime;
+        }
+        Sort();
+    }
+
+    private void Sort()
     {
         StartCoroutine(CoroutineMovePos());
     }
@@ -67,10 +69,32 @@ public class Line : MonoBehaviour
     {
         float time = 0;
 
+        if (transform.childCount < 2)
+            yield break;
+
         while (time <= 1f)
         {
-            orderer.ApplyCubeOrder(CubeAnchor.Left, 5, 2);
+            orderer.ApplyCubeOrder(CubeAnchor.Center, 7, 2);
+            time += Time.deltaTime;
+
             yield return null;
         }
+
+        time = 0;
+
+        while (time <= 3.5f)
+        {
+            Move();
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+
+    protected void Move()
+    {
+        if (GameManager.Instance.doFight)
+            return;
+        transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, 3f * Time.deltaTime);
     }
 }

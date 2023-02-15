@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class StickMan : MonoBehaviour
 {
-    Rigidbody rigid;
+    protected Rigidbody rigid;
     NavMeshAgent agent;
-    Animator anim;
+    protected Animator anim;
     Vector3 nextPoint;
 
-    [SerializeField] float speed;
+    [SerializeField] protected float speed;
     [SerializeField]GameObject target;
 
     protected Transform point;
@@ -18,16 +18,15 @@ public class StickMan : MonoBehaviour
     protected int red = 1;
     protected int layer;
     protected GameObject obj;
-    [HideInInspector] public bool firstFight = true;
     float gatherTime = 0f;
-    float deadTime = 3f;
+    protected float deadTime = 3f;
+    public bool isFighting = false;
 
     protected void Init()
     {
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("rand", Random.Range(0f, 1f));
     }
 
     protected void Move()
@@ -114,7 +113,7 @@ public class StickMan : MonoBehaviour
 
         if (pointVec.magnitude < 1f)
         {
-            speed = 0.1f;
+            speed = 0.5f;
         }
 
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
@@ -162,7 +161,7 @@ public class StickMan : MonoBehaviour
     {
         if (target == null)
             return;
-        speed = 1.5f;
+        speed = 0.3f;
         var dirVec = target.transform.position - rigid.position;
         var nextVec = dirVec.normalized * speed * Time.deltaTime;
  
@@ -170,12 +169,21 @@ public class StickMan : MonoBehaviour
         transform.LookAt(target.transform.position);
     }
 
-    protected void Die()
+    protected void OnFightAnim()
     {
-        StartCoroutine(CoroutineDie());
+        if (!GameManager.Instance.doFight)
+            return;
+        anim.SetBool("isFight", true);
     }
 
-    IEnumerator CoroutineDie()
+    protected void OffFightAnim()
+    {
+        if (!GameManager.Instance.allKill)
+            return;
+        anim.SetBool("isFight", false);
+    }
+
+/*     protected IEnumerator CoroutineDie()
     {
         float time  = 0;
 
@@ -187,5 +195,5 @@ public class StickMan : MonoBehaviour
 
         gameObject.SetActive(false);
         //파티클
-    }
+    } */
 }

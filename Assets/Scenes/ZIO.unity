@@ -159,6 +159,7 @@ Transform:
   - {fileID: 507480472}
   - {fileID: 1212965522}
   - {fileID: 1119667597}
+  - {fileID: 52687242}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40184197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -217,10 +218,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 40184197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e87f1ad86634c96918c39b097a24b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f179a7fcfa024c19b0d79da482cb8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transforms: []
+--- !u!1 &52687241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52687242}
+  - component: {fileID: 52687243}
+  - component: {fileID: 52687244}
+  m_Layer: 0
+  m_Name: King
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &52687242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52687241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.544, z: 7.693}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 20772684}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &52687243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52687241}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.82894135}
+  m_Center: {x: 0, y: 0, z: -0.5240278}
+--- !u!114 &52687244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52687241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f0345d1b8f54c4b8dcd628d7a53715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &130223339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &273169617
 Animator:
   serializedVersion: 3
@@ -720,7 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &392181061
 Animator:
   serializedVersion: 3
@@ -881,7 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!195 &400543419
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1064,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!195 &412723275
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1247,7 +1305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!195 &431746404
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1705,7 +1763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!195 &683304136
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1910,7 +1968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &778242064
 Animator:
   serializedVersion: 3
@@ -2093,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &919821481
 Animator:
   serializedVersion: 3
@@ -2304,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5930985534974158841, guid: c73c82207c26c454fb2fbd61e362cf46, type: 3}
       propertyPath: ShotCoolDown
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5930985535009629486, guid: c73c82207c26c454fb2fbd61e362cf46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2479,7 +2537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &1085531430
 Animator:
   serializedVersion: 3
@@ -2539,7 +2597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111013696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2554,7 +2612,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111013696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e87f1ad86634c96918c39b097a24b2, type: 3}
+  m_Script: {fileID: 11500000, guid: c03cf449082c54cfea8bf70c250a93d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transforms: []
@@ -3002,7 +3060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218392123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -4.57}
+  m_LocalPosition: {x: 0, y: 0.5, z: -4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 20772684}
@@ -3267,7 +3325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &1298203728
 Animator:
   serializedVersion: 3
@@ -3498,7 +3556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &1434330357
 Animator:
   serializedVersion: 3
@@ -3681,7 +3739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   target: {fileID: 0}
-  firstFight: 1
+  isFighting: 0
 --- !u!95 &1650157513
 Animator:
   serializedVersion: 3
@@ -3782,9 +3840,15 @@ MonoBehaviour:
   stickManRed: {fileID: 1111013697}
   pointBlue: {fileID: 1218392124}
   pointRed: {fileID: 1974468968}
+  king: {fileID: 52687242}
   gameTime: 10
+  NumBlue: 0
+  NumRed: 0
   timeOver: 0
   timeFight: 0
+  doFight: 0
+  allKill: 0
+  isWin: 0
 --- !u!4 &1778623588
 Transform:
   m_ObjectHideFlags: 0

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class StickManBlue : StickMan
 {
+    Transform king;
+
     private void Awake() 
     {
         Init();
+        anim.SetFloat("rand", Random.Range(0f, 1f));
         point = GameManager.Instance.pointBlue;
+        king = GameManager.Instance.king;
         layer = LayerMask.GetMask("RedSlime");
     }
 
@@ -20,8 +24,15 @@ public class StickManBlue : StickMan
     {
         Move();
         GatherPoint();
-        Target(layer);
-        ToMoveTarget();
+        OffFightAnim();
+        MoveKing();
+        Dance();
+        if (!GameManager.Instance.allKill)
+        {
+            Target(layer);
+            ToMoveTarget();
+            OnFightAnim();
+        }
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -32,17 +43,47 @@ public class StickManBlue : StickMan
         {
             Hit(red);
         }
+    }
 
-        if (GameManager.Instance.timeFight)
+    public void Die()
+    {
+        StartCoroutine(CoroutineDie());
+    }
+
+    IEnumerator CoroutineDie()
+    {
+        float time  = 0;
+
+        while (time <= deadTime)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("RedSlime"))
-            {
-                var check = other.gameObject.GetComponent<StickManRed>().firstFight;
-                if (!check)
-                    return;
-                firstFight = false;
-                Die();
-            }
+            time += Time.deltaTime;
+            yield return null;
         }
+        GameManager.Instance.NumBlue--;
+        gameObject.SetActive(false);
+        //파티클
+    }
+
+    private void MoveKing()
+    {
+        if (!GameManager.Instance.allKill)
+            return;
+        if (GameManager.Instance.isWin)
+            return;
+
+        speed = 1.5f;
+        transform.LookAt(king);
+        var dirVec = king.transform.position - rigid.position;
+        var nextVec = dirVec.normalized * speed * Time.deltaTime;
+ 
+        rigid.MovePosition(rigid.position + nextVec);
+    }
+
+    private void Dance()
+    {
+        if (!GameManager.Instance.isWin)
+            return;
+        anim.SetBool("isWin", true);
+        transform.LookAt(GameManager.Instance.pointBlue);
     }
 }

@@ -7,6 +7,7 @@ public class StickManRed : StickMan
     private void Awake() 
     {
         Init();
+        anim.SetFloat("rand", Random.Range(0f, 1f));
         point = GameManager.Instance.pointRed;
         layer = LayerMask.GetMask("BlueSlime");
     }
@@ -22,6 +23,7 @@ public class StickManRed : StickMan
         GatherPoint();
         Target(layer);
         ToMoveTarget();
+        OnFightAnim();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -37,12 +39,39 @@ public class StickManRed : StickMan
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
             {
-                var check = other.gameObject.GetComponent<StickManBlue>().firstFight;
-                if (!check)
-                    return;
-                firstFight = false;
-                Die();
+                GameManager.Instance.doFight = true;
+                if (!other.gameObject.GetComponent<StickManBlue>().isFighting)
+                {
+                    if (isFighting)
+                        return;
+
+                    other.gameObject.GetComponent<StickManBlue>().isFighting = true;
+                    other.gameObject.GetComponent<StickManBlue>().Die();
+                    isFighting = true;
+                    Die();
+                }
             }
         }
+    }
+
+    private void Die()
+    {
+        StartCoroutine(CoroutineDie());
+    }
+
+    IEnumerator CoroutineDie()
+    {
+        float time  = 0;
+
+        while (time <= deadTime)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        GameManager.Instance.NumRed--;
+        if (GameManager.Instance.NumRed == 0)
+            GameManager.Instance.allKill = true;
+        gameObject.SetActive(false);
+        //파티클
     }
 }
