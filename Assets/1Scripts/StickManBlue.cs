@@ -24,6 +24,7 @@ public class StickManBlue : StickMan
     {
         Move();
         GatherPoint();
+        SpritePoint();
         OffFightAnim();
         MoveKing();
         Dance();
@@ -71,7 +72,7 @@ public class StickManBlue : StickMan
         if (GameManager.Instance.isWin)
             return;
 
-        speed = 1.5f;
+        speed = 3f;
         transform.LookAt(king);
         var dirVec = king.transform.position - rigid.position;
         var nextVec = dirVec.normalized * speed * Time.deltaTime;

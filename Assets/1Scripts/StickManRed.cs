@@ -45,6 +45,7 @@ public class StickManRed : StickMan
                     if (isFighting)
                         return;
 
+                    other.gameObject.GetComponent<StickManBlue>().deadTime = deadTime;
                     other.gameObject.GetComponent<StickManBlue>().isFighting = true;
                     other.gameObject.GetComponent<StickManBlue>().Die();
                     isFighting = true;

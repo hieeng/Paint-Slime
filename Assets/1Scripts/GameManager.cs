@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ObjectManager stickManBlue;
     [SerializeField] ObjectManager stickManRed;
     [SerializeField] RagdollScript ragdoll;
+    [SerializeField] White white;
 
     public Transform pointBlue;
     public Transform pointRed;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             gameStart = true;
             Time.timeScale = 1.0f;
+            white.OnWhiteStickMan();
             SetCamera();
         }
     }

@@ -20,7 +20,7 @@ public class StickMan : MonoBehaviour
     protected int layer;
     protected GameObject obj;
     float gatherTime = 0f;
-    protected float deadTime = 3f;
+    public float deadTime;
     public bool isFighting = false;
 
     protected void Init()
@@ -28,6 +28,7 @@ public class StickMan : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        deadTime = Random.Range(2f, 3f);
     }
 
     protected void Move()
@@ -100,12 +101,15 @@ public class StickMan : MonoBehaviour
         if (GameManager.Instance.timeFight)
             return;
         gatherTime += Time.deltaTime;
-        Point();
+        GPoint();
         if (gatherTime >= 3f)
+        {
             GameManager.Instance.timeFight = true;
+            gatherTime = 0;
+        }
     }
 
-    private void Point()
+    private void GPoint()
     {
         agent.enabled = false;
         var pointVec = point.position - rigid.position;
@@ -120,6 +124,28 @@ public class StickMan : MonoBehaviour
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
 
         rigid.MovePosition(rigid.position + pointNextVec);
+    }
+
+    protected void SpritePoint()
+    {
+        if (!GameManager.Instance.timeFight)
+            return;
+        if (gatherTime >= 1f)
+            return;
+
+        gatherTime += Time.deltaTime;
+        SPoint();
+    }
+
+    private void SPoint()
+    {
+        var pointVec = (rigid.position - point.position) * 5;
+        speed = 1f;
+        pointVec.y = 0f; pointVec.z = 0f;
+        transform.LookAt(GameManager.Instance.pointRed);
+
+        var pointNexVec = pointVec.normalized * speed * Time.deltaTime;
+        rigid.MovePosition(rigid.position + pointNexVec);
     }
 
     protected void Target(int layer)

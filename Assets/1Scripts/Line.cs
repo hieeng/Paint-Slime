@@ -74,7 +74,7 @@ public class Line : MonoBehaviour
 
         while (time <= 1f)
         {
-            orderer.ApplyCubeOrder(CubeAnchor.Center, 7, 2);
+            //orderer.ApplyCubeOrder(CubeAnchor.Center, 7, 2);
             time += Time.deltaTime;
 
             yield return null;
@@ -83,7 +83,6 @@ public class Line : MonoBehaviour
         time = 0;
 
         GameManager.Instance.SetCamera();
-        Debug.Log("1");
         while (time <= 3.5f)
         {
             Move();
