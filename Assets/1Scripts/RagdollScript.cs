@@ -75,19 +75,12 @@ public class RagdollScript : MonoBehaviour
         // Destroy(this.gameObject, 2.0f); // Sink된 뒤 2초뒤 파괴
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            if(gameObject.name == "RedKing")    KnockBack();
-        }
-    }
-
-    void KnockBack()
+    public void KnockBack()
     {
         FireParticle.SetActive(true);
         SetRagdoll(true);
         KnockBackBone.AddForce(forceVec * KnockBackPower);
         SetRagdollSink(true);
+        GameManager.Instance.SetCamera();
     }
 }

@@ -10,6 +10,7 @@ public class StickMan : MonoBehaviour
     protected Animator anim;
     Vector3 nextPoint;
 
+    [SerializeField] ParticleSystem particle;
     [SerializeField] protected float speed;
     [SerializeField]GameObject target;
 

@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slime slime;
     [SerializeField] Projectile projectile;
     [SerializeField] AI ai;
+    [SerializeField] CameraScript cam;
     [SerializeField] ObjectManager stickManBlue;
     [SerializeField] ObjectManager stickManRed;
+    [SerializeField] RagdollScript ragdoll;
 
     public Transform pointBlue;
     public Transform pointRed;
@@ -25,6 +27,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool doFight = false;
     public bool allKill = false;
     public bool isWin = false;
+    public float startTime = 3f;
+
+    bool gameStart = false;
 
     static public GameManager Instance;
     
@@ -36,11 +41,19 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Time.timeScale = 0.0f;
     }
 
     private void Update() 
     {
         UpdateTime();
+
+        if (Input.GetMouseButtonDown(0) && gameStart == false)
+        {
+            gameStart = true;
+            Time.timeScale = 1.0f;
+            SetCamera();
+        }
     }
 
     private void UpdateTime()
@@ -48,6 +61,11 @@ public class GameManager : MonoBehaviour
         gameTime -= Time.deltaTime;
         if (gameTime <= 0)
             timeOver = true;
+    }
+
+    public void SetCamera()
+    {
+        cam.Anim.SetTrigger("CameraTrigger");
     }
 
     public GameObject GetObj(int value)
@@ -63,5 +81,10 @@ public class GameManager : MonoBehaviour
     public GameObject GetRed(int value)
     {
         return stickManRed.Get(value);
+    }
+
+    public void KnockBack()
+    {
+        ragdoll.KnockBack();
     }
 }

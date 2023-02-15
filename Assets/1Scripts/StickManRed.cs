@@ -70,7 +70,10 @@ public class StickManRed : StickMan
         }
         GameManager.Instance.NumRed--;
         if (GameManager.Instance.NumRed == 0)
+        {
             GameManager.Instance.allKill = true;
+            GameManager.Instance.SetCamera();
+        }
         gameObject.SetActive(false);
         //파티클
     }

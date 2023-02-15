@@ -8,6 +8,9 @@ public class King : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueSlime"))
             if (GameManager.Instance.allKill)
+            {
                 GameManager.Instance.isWin = true;
+                GameManager.Instance.KnockBack();
+            }
     }
 }

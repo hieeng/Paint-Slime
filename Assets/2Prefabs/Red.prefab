@@ -514,7 +514,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97585e68e589e4e7a89f761f0a545fdb, type: 2}
+  - {fileID: 2100000, guid: 635bfca12e70c40009f3f6eff16a013c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -647,8 +647,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5994264840169837010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.52, y: 0.5, z: 2.67}
-  m_LocalScale: {x: 0.2, y: 0.23, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.32, z: 0.3}
   m_Children:
   - {fileID: 2654007637962939382}
   - {fileID: 537380692507539040}
@@ -741,6 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   target: {fileID: 0}
+  isFighting: 0
 --- !u!1 &6094739163688675967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1044,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97585e68e589e4e7a89f761f0a545fdb, type: 2}
+  - {fileID: 2100000, guid: 635bfca12e70c40009f3f6eff16a013c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

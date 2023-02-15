@@ -82,6 +82,8 @@ public class Line : MonoBehaviour
 
         time = 0;
 
+        GameManager.Instance.SetCamera();
+        Debug.Log("1");
         while (time <= 3.5f)
         {
             Move();
