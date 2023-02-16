@@ -10,6 +10,7 @@ public class RagdollScript : MonoBehaviour
     [SerializeField] public float KnockBackPower = 1000.0f; // 넉백 파워
     [SerializeField] Vector3 forceVec; // 넉백 방향
 
+    [SerializeField] GameObject particle;
     [SerializeField] GameObject cannon;
     [SerializeField] GameObject cannonD;
 
@@ -87,8 +88,9 @@ public class RagdollScript : MonoBehaviour
         GameManager.Instance.SetCamera();
         StartCoroutine(CanvasCoroutine());
         
-        cannon.gameObject.SetActive(false);
-        cannonD.gameObject.SetActive(true);
+        particle.SetActive(true);
+        cannon.SetActive(false);
+        cannonD.SetActive(true);
     }
 
     IEnumerator CanvasCoroutine()
