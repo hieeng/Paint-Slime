@@ -190,7 +190,7 @@ public class StickMan : MonoBehaviour
     protected void BloodParticle(int num)   // 미치 : 파티클 출력부. 지오님 코드에 맞춰서 Stickman에서 선언하여 자식 오브젝트에서 오버라이드하여 사용
     {
         var blood = GameManager.Instance.GetObj(num);
-        blood.transform.position = transform.position;
+        blood.transform.position = transform.position + new Vector3(0, 1.2f, 0);
         blood.transform.rotation = Quaternion.identity;
         blood.GetComponent<ParticleSystem>().Play();
     }

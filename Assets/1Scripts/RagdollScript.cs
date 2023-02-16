@@ -10,6 +10,9 @@ public class RagdollScript : MonoBehaviour
     [SerializeField] public float KnockBackPower = 1000.0f; // 넉백 파워
     [SerializeField] Vector3 forceVec; // 넉백 방향
 
+    [SerializeField] GameObject cannon;
+    [SerializeField] GameObject cannonD;
+
     [SerializeField] GameObject FireParticle;
 
     Collider[] col = null; // 래그돌의 콜라이더 배열
@@ -84,6 +87,8 @@ public class RagdollScript : MonoBehaviour
         GameManager.Instance.SetCamera();
         StartCoroutine(CanvasCoroutine());
         
+        cannon.gameObject.SetActive(false);
+        cannonD.gameObject.SetActive(true);
     }
 
     IEnumerator CanvasCoroutine()
