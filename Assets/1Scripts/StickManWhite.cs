@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class StickManWhite : StickMan
 {
+    private bool oneTime = true;
     private void Awake() 
     {
         Init();
+        agent.enabled = false;
     }
 
     private void Update() 
     {
+        DoWalk();
         Move();
         TimeOver();
+    }
+
+    private void DoWalk()
+    {
+        if (!oneTime)
+            return;
+        if (!GameManager.Instance.gameStart)
+            return;
+
+        agent.enabled = true;
+        anim.SetBool("isMove", true);
+        oneTime = false;
     }
 
     private void TimeOver()

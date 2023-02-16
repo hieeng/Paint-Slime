@@ -35,6 +35,8 @@ public class AI : MonoBehaviour
 
     void TryShot()
     {
+        if (!GameManager.Instance.gameStart)
+            return;
         if (GameManager.Instance.timeOver)
             return;
         if(Time.time - LastshotTime > ShotCoolDown)
@@ -48,6 +50,8 @@ public class AI : MonoBehaviour
 
     void TryMove()
     {
+        if (!GameManager.Instance.gameStart)
+            return;
         if (GameManager.Instance.timeOver)
             return;
 

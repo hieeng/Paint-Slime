@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class StickMan : MonoBehaviour
 {
     protected Rigidbody rigid;
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
     protected Animator anim;
     Vector3 nextPoint;
 
@@ -28,6 +28,7 @@ public class StickMan : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        anim.SetFloat("rand", Random.Range(0f, 1f));
         deadTime = Random.Range(2f, 3f);
     }
 
@@ -40,9 +41,9 @@ public class StickMan : MonoBehaviour
         else
             transform.transform.position = agent.destination;
         
+        anim.SetBool("isMove", true);
         if (RandomPoint(transform.position, 3f, out nextPoint))
             agent.SetDestination(nextPoint);
-        anim.SetBool("isMove", true);
     }
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -117,9 +118,7 @@ public class StickMan : MonoBehaviour
         speed = pointVec.magnitude;
 
         if (pointVec.magnitude < 1f)
-        {
-            speed = 0.5f;
-        }
+            speed = 0.3f;
 
         var pointNextVec = pointVec.normalized * speed * Time.deltaTime;
 
@@ -133,7 +132,7 @@ public class StickMan : MonoBehaviour
 
         Collider[] cols = Physics.OverlapSphere(this.transform.position, 10f, layer);
         float temp;
-        float min = 9999;
+        float min = 0;
 
         if (cols.Length > 0)
         {

@@ -20,15 +20,17 @@ public class Line : MonoBehaviour
 
         first = false;
 
+        Debug.Log("1");
         StartCoroutine(CoroutineGet(2f));
         StartCoroutine(CoroutineSort(2.5f));
+        StartCoroutine(CoroutineCameraMove(3.5f));
     }
 
-    IEnumerator CoroutineGet(float dealyTime)
+    IEnumerator CoroutineGet(float delayTime)
     {
         float time = 0f;
 
-        while (time <= dealyTime)
+        while (time <= delayTime)
         {
             yield return null;
             time += Time.deltaTime;
@@ -38,7 +40,7 @@ public class Line : MonoBehaviour
         for (int i = 0, size = transform.childCount; i < size; i++)
             transforms[i] = transform.GetChild(i);
 
-        if (transform.childCount <= 2)
+        if (transform.childCount < 2)
             yield break;
 
         orderer.Transforms.Clear();
@@ -49,11 +51,11 @@ public class Line : MonoBehaviour
         orderer.Distance_Z = 0.5f;
     }
 
-    IEnumerator CoroutineSort(float dealyTime)
+    IEnumerator CoroutineSort(float delayTime)
     {
         float time = 0f;
 
-        while (time <= dealyTime)
+        while (time <= delayTime)
         {
             yield return null;
             time += Time.deltaTime;
@@ -71,12 +73,13 @@ public class Line : MonoBehaviour
         float time = 0;
         FindMinIdx();
 
-        if (transform.childCount <= 2)
-            yield break;
+        Debug.Log(idx);
+/*         if (transform.childCount <= 2)
+            yield break; */
 
         while (time <= 1f)
         {
-            orderer.ApplyCubeOrder(CubeAnchor.Custom, 5, 2, idx);
+            orderer.ApplyCubeOrder(CubeAnchor.Custom, 6, 2, idx);
             time += Time.deltaTime;
 
             yield return null;
@@ -84,7 +87,6 @@ public class Line : MonoBehaviour
 
         time = 0;
 
-        GameManager.Instance.SetCamera();
         while (time <= 3.5f)
         {
             Move();
@@ -124,5 +126,18 @@ public class Line : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator CoroutineCameraMove(float delayTime)
+    {
+        float time = 0;
+
+        while (time < delayTime)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("2");
+        GameManager.Instance.SetCamera();
     }
 }

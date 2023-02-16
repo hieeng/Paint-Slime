@@ -9,7 +9,6 @@ public class StickManBlue : StickMan
     private void Awake() 
     {
         Init();
-        anim.SetFloat("rand", Random.Range(0f, 1f));
         point = GameManager.Instance.pointBlue;
         king = GameManager.Instance.king;
         layer = LayerMask.GetMask("RedSlime");
@@ -61,6 +60,10 @@ public class StickManBlue : StickMan
             yield return null;
         }
         GameManager.Instance.NumBlue--;
+        if (GameManager.Instance.NumBlue == 0)
+        {
+            GameManager.Instance.TurnOnCanvas(3);
+        }
         gameObject.SetActive(false);
         BloodParticle(2);
     }

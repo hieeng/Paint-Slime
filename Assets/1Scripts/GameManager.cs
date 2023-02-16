@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool doFight = false;
     public bool allKill = false;
     public bool isWin = false;
+    public bool isLose = false;
     public float startTime = 3f;
 
     public bool gameStart = false;
