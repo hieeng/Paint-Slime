@@ -88,7 +88,7 @@ public class RagdollScript : MonoBehaviour
 
     IEnumerator CanvasCoroutine()
     {
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(8.0f);
         GameManager.Instance.TurnOnCanvas(2);
     }
 
