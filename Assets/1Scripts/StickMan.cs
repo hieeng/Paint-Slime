@@ -188,6 +188,14 @@ public class StickMan : MonoBehaviour
         anim.SetBool("isFight", false);
     }
 
+    protected void BloodParticle(int num)   // 미치 : 파티클 출력부. 지오님 코드에 맞춰서 Stickman에서 선언하여 자식 오브젝트에서 오버라이드하여 사용
+    {
+        var blood = GameManager.Instance.GetObj(num);
+        blood.transform.position = transform.position;
+        blood.transform.rotation = Quaternion.identity;
+        blood.GetComponent<ParticleSystem>().Play();
+    }
+
 /*     protected IEnumerator CoroutineDie()
     {
         float time  = 0;

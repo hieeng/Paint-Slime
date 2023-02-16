@@ -82,6 +82,14 @@ public class RagdollScript : MonoBehaviour
         KnockBackBone.AddForce(forceVec * KnockBackPower);
         SetRagdollSink(true);
         GameManager.Instance.SetCamera();
+        StartCoroutine(CanvasCoroutine());
+        
+    }
+
+    IEnumerator CanvasCoroutine()
+    {
+        yield return new WaitForSeconds(6.0f);
+        GameManager.Instance.TurnOnCanvas(2);
     }
 
 

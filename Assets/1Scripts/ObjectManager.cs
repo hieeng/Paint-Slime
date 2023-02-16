@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class ObjectManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] prefabs; // 0 : BlueProjectile, 1 : RedProjectile, 2 : BluePaintParticle, 3: RedPaintParticle
+    [SerializeField] GameObject[] prefabs; // 0 : BlueProjectile, 1 : RedProjectile, 2 : BluePaintParticle, 3: RedPaintParticle 4: WhitePaintParticle
     List<GameObject>[] pools;
 
     private void Awake()

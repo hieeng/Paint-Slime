@@ -9,12 +9,16 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] int ObjNum;
 
-    void Start()
+    float MadeTime;
+    void Awake()
     {
+        MadeTime = Time.time;
     }
 
     void Update()
     {
+        if(Time.time - MadeTime > 5.0f) Destroy(gameObject);
+
         if(GameManager.Instance.timeOver == true) Destroy(gameObject);
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
     }

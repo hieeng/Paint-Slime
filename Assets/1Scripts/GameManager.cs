@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public bool isWin = false;
     public float startTime = 3f;
 
-    bool gameStart = false;
+    public bool gameStart = false;
 
     static public GameManager Instance;
     
@@ -42,19 +42,22 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        Time.timeScale = 0.0f;
+       //Time.timeScale = 0.0f;
     }
 
     private void Update() 
     {
-        UpdateTime();
+        if(gameStart) UpdateTime();
 
         if (Input.GetMouseButtonDown(0) && gameStart == false)
         {
             gameStart = true;
-            Time.timeScale = 1.0f;
-            white.OnWhiteStickMan();
+            //Time.timeScale = 1.0f;
+            //white.OnWhiteStickMan();
             SetCamera();
+
+            TurnOnCanvas(1);
+            TurnOffCanvas(0);
         }
     }
 
@@ -62,12 +65,31 @@ public class GameManager : MonoBehaviour
     {
         gameTime -= Time.deltaTime;
         if (gameTime <= 0)
+        {
             timeOver = true;
+            TurnOffCanvas(1);
+        }
+            
+    }
+
+    public float GetGameTime()   // 미치 : 현재 게임 시간 가져오는 함수입니다.
+    {
+        return gameTime;
     }
 
     public void SetCamera()
     {
         cam.Anim.SetTrigger("CameraTrigger");
+    }
+
+    public void TurnOnCanvas(int cnt)  // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+    {
+        uIManager.GetComponent<UIManager>().TurnOnCanvas(cnt);
+    }
+
+    public void TurnOffCanvas(int cnt)  // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+    {
+        uIManager.GetComponent<UIManager>().TurnOffCanvas(cnt);
     }
 
     public GameObject GetObj(int value)
