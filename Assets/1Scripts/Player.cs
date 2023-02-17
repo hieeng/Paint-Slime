@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject Projectile; // 포탄 오브젝트
     [SerializeField] GameObject ShotPos; // 총알 발사 위치
+    [SerializeField] GameObject magic;
 
     bool IsMove = false;
 
@@ -19,14 +20,15 @@ public class Player : MonoBehaviour
     [SerializeField] float shotCoolDown = 3.0f;  // 샷 쿨타임
     float LastshotTime = 0.0f; // 마지막으로 사격한 시간
 
-    void Start()
-    {
-    }
+    public float feverGauge = 0;
+    public bool feverTime = false;
+    private bool oneTime = true;
 
     void Update()
     {
         TryMove();
         TryShot();
+        FeverTime();
     }
 
 
@@ -80,5 +82,39 @@ public class Player : MonoBehaviour
     Vector3 ClampPos(Vector3 pos)
     {
         return new Vector3(Mathf.Clamp(transform.position.x, -4.0f, 4.0f), transform.position.y, transform.position.z);
+    }
+
+    private void FeverTime()
+    {
+        if (GameManager.Instance.feverMaxGague - feverGauge > 0.5f)
+            return;
+        if (!oneTime)
+            return;
+
+        oneTime = false;
+        feverTime = true;
+        StartCoroutine(CoruotineFever());
+    }
+
+    IEnumerator CoruotineFever()
+    {
+        float time = 0;
+        var origin = shotCoolDown;
+        GameManager.Instance.ShowFever();
+        magic.SetActive(true);
+
+        while (time <= 3f)
+        {
+            time += Time.deltaTime;
+            shotCoolDown = 0.2f;
+            feverGauge = Mathf.Lerp(GameManager.Instance.feverMaxGague, 0, time/3);
+            yield return null;
+        }
+        GameManager.Instance.count = 0;
+        feverGauge = 0;
+        magic.SetActive(false);
+        feverTime = false;
+        oneTime = true;
+        shotCoolDown = origin;
     }
 }

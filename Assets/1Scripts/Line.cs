@@ -21,9 +21,9 @@ public class Line : MonoBehaviour
         first = false;
 
         Debug.Log("1");
-        StartCoroutine(CoroutineGet(2f));
-        StartCoroutine(CoroutineSort(2.5f));
-        StartCoroutine(CoroutineCameraMove(3.5f));
+        StartCoroutine(CoroutineGet(1f));
+        StartCoroutine(CoroutineSort(1.5f));
+        StartCoroutine(CoroutineCameraMove(2.5f));
     }
 
     IEnumerator CoroutineGet(float delayTime)
@@ -87,7 +87,7 @@ public class Line : MonoBehaviour
 
         time = 0;
 
-        while (time <= 3.5f)
+        while (time <= 2.5f)
         {
             Move();
             time += Time.deltaTime;

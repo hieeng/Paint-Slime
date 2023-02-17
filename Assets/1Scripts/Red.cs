@@ -8,10 +8,10 @@ public class Red : Line
     private void Update()
     {
         Get();
-        Count();
+        CountRed();
     }
 
-    private void Count()
+    private void CountRed()
     {
         if (!GameManager.Instance.timeOver)
             return;

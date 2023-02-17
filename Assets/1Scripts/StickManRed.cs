@@ -7,9 +7,9 @@ public class StickManRed : StickMan
     private void Awake() 
     {
         Init();
-        anim.SetFloat("rand", Random.Range(0f, 1f));
         point = GameManager.Instance.pointRed;
         layer = LayerMask.GetMask("BlueSlime");
+        objNum = Random.Range(5, 8);
     }
 
     private void Start() 
@@ -33,7 +33,10 @@ public class StickManRed : StickMan
             Hit(blue);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
+        {
             HitAction();
+            MovePoint();
+        }
 
         if (GameManager.Instance.timeFight)
         {
@@ -76,6 +79,6 @@ public class StickManRed : StickMan
             GameManager.Instance.SetCamera();
         }
         gameObject.SetActive(false);
-        BloodParticle(3);
+        BloodParticle(objNum);
     }
 }

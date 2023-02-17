@@ -34,7 +34,7 @@ public class StickManWhite : StickMan
     {
         if (!GameManager.Instance.timeOver)
             return;
-        BloodParticle(4);
+        BloodParticle(8);
         gameObject.SetActive(false);
     }
 

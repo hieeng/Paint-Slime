@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float gameTime = 20f;
     public int NumBlue = 0;
     public int NumRed = 0;
+    public int feverMaxGague;
     [HideInInspector] public bool timeOver = false;
     [HideInInspector] public bool timeFight = false;
     [HideInInspector] public bool doFight = false;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public bool gameStart = false;
 
     int camerTrigger = 0;
+    public int count = 0;
     static public GameManager Instance;
     
     private void Awake() 
@@ -85,6 +87,34 @@ public class GameManager : MonoBehaviour
         //cam.Anim.SetTrigger("CameraTrigger");
     }
 
+    public void PlusFeverGage()
+    {
+        count++;
+        StartCoroutine(CoruotinePlusFeverGage(count));
+    }
+
+    IEnumerator CoruotinePlusFeverGage(int var)
+    {
+        float time = 0;
+
+        while (time <= 0.2f)
+        {
+            time += Time.deltaTime;
+            player.feverGauge = Mathf.Lerp(player.feverGauge, var, time / 0.2f);
+            yield return null;
+        }
+    }
+
+    public float GetFeverGage()
+    {
+        return player.feverGauge;
+    }
+    
+    public bool GetIsFever()
+    {
+        return player.feverTime;
+    }
+
     public void TurnOnCanvas(int cnt)  // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
     {
         uIManager.GetComponent<UIManager>().TurnOnCanvas(cnt);
@@ -113,5 +143,10 @@ public class GameManager : MonoBehaviour
     public void KnockBack()
     {
         ragdoll.KnockBack();
+    }
+
+    public void ShowFever()
+    {
+        uIManager.ShowFever();
     }
 }

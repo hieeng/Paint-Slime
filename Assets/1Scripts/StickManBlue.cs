@@ -12,6 +12,7 @@ public class StickManBlue : StickMan
         point = GameManager.Instance.pointBlue;
         king = GameManager.Instance.king;
         layer = LayerMask.GetMask("RedSlime");
+        objNum = Random.Range(2, 5);
     }
 
     private void Start() 
@@ -38,7 +39,10 @@ public class StickManBlue : StickMan
     private void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BlueObj"))
+        {
             HitAction();
+            MovePoint();
+        }
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedObj"))
         {
             Hit(red);

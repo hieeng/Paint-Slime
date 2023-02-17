@@ -18,6 +18,7 @@ public class StickMan : MonoBehaviour
     protected int blue = 0;
     protected int red = 1;
     protected int layer;
+    protected int objNum;
     protected GameObject obj;
     float gatherTime = 0f;
     public float deadTime;
@@ -29,7 +30,7 @@ public class StickMan : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         anim.SetFloat("rand", Random.Range(0f, 1f));
-        deadTime = Random.Range(2f, 3f);
+        deadTime = Random.Range(1.5f, 2f);
     }
 
     protected void Move()
@@ -42,6 +43,11 @@ public class StickMan : MonoBehaviour
             transform.transform.position = agent.destination;
         
         anim.SetBool("isMove", true);
+        MovePoint();
+    }
+
+    protected void MovePoint()
+    {
         if (RandomPoint(transform.position, 3f, out nextPoint))
             agent.SetDestination(nextPoint);
     }
@@ -103,7 +109,7 @@ public class StickMan : MonoBehaviour
             return;
         gatherTime += Time.deltaTime;
         GPoint();
-        if (gatherTime >= 3f)
+        if (gatherTime >= 2f)
         {
             GameManager.Instance.timeFight = true;
             gatherTime = 0;

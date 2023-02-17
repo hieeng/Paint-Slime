@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<Canvas> CanvasList = new List<Canvas>(); // 0 : MainMenuCanvas, 1 : InGameCanvas, 2 : EndGameCanvas
     int GameTime;
 
+    [SerializeField] float delayTime;
+    [SerializeField] Text feverText;
+    [SerializeField] Image feverGauge;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         TimeUpdate();
+        FeverGague();
     }
 
     void TimeUpdate()
@@ -86,4 +91,43 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ShowFever()
+    {
+        feverText.gameObject.SetActive(true);
+        StartCoroutine(CoruotineFever(feverText));
+    }
+
+    public void FeverGague()
+    {
+        feverGauge.fillAmount = GameManager.Instance.GetFeverGage() / GameManager.Instance.feverMaxGague;
+    }
+
+    IEnumerator CoruotineFever(Text text)
+    {
+        var time = 0f;
+        var origin = text.color;
+
+        while (time <= delayTime)
+        {
+            yield return null;
+            time += Time.deltaTime;
+        }
+
+        time = 0;
+
+        while (time <= delayTime)
+        {
+            yield return null;
+            time += Time.deltaTime;
+
+            var textColor = text.color;
+            textColor.a = Mathf.Lerp(origin.a, 0, time / delayTime);
+            text.color = textColor;
+        }
+        text.color = origin;
+        text.gameObject.SetActive(false);
+    }
+
+
 }

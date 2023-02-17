@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3607605828501747428}
   - component: {fileID: 1760801934182101178}
   - component: {fileID: 1894103241245028327}
-  - component: {fileID: 3159699216972504851}
   - component: {fileID: -2266619957841664393}
+  - component: {fileID: 1947504550725246312}
   m_Layer: 10
   m_Name: RedProjectile
   m_TagString: Untagged
@@ -98,21 +98,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3159699216972504851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831727814552441085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97901c8e1611841b3930940a271ee59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 10
-  PaintParticle: {fileID: 31203345528292055, guid: d6729ef46e21c42bfb33f1847d420679, type: 3}
-  ObjNum: 3
 --- !u!54 &-2266619957841664393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +114,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1947504550725246312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831727814552441085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509a728c1b6f241d180c79dd22408582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 10
+  PaintParticle: {fileID: 31203345528292055, guid: d6729ef46e21c42bfb33f1847d420679, type: 3}
+  ObjNum: 0
