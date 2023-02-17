@@ -1,3 +1,4 @@
+//지오 : 빨간색 스틱맨들을 모이게 하는 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

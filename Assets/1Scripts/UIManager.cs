@@ -1,3 +1,4 @@
+//미치 : UI컨트롤 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text feverText;
     [SerializeField] Image feverGauge;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         TimeUpdate();
@@ -98,11 +92,13 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CoruotineFever(feverText));
     }
 
+    //지오
     public void FeverGague()
     {
         feverGauge.fillAmount = GameManager.Instance.GetFeverGage() / GameManager.Instance.feverMaxGague;
     }
-
+    
+    //지오
     IEnumerator CoruotineFever(Text text)
     {
         var time = 0f;

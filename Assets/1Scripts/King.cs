@@ -1,3 +1,4 @@
+//지오 : 전투후 도착하는 지점 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

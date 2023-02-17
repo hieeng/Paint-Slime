@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,7 +76,8 @@ public class GameManager : MonoBehaviour
             
     }
 
-    public float GetGameTime()   // 미치 : 현재 게임 시간 가져오는 함수입니다.
+    // 미치 : 현재 게임 시간 가져오는 함수입니다.
+    public float GetGameTime()
     {
         return gameTime;
     }
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         float time = 0;
 
+        Debug.Log(count);
         while (time <= 0.2f)
         {
             time += Time.deltaTime;
@@ -115,12 +118,14 @@ public class GameManager : MonoBehaviour
         return player.feverTime;
     }
 
-    public void TurnOnCanvas(int cnt)  // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+     // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+    public void TurnOnCanvas(int cnt)  
     {
         uIManager.GetComponent<UIManager>().TurnOnCanvas(cnt);
     }
 
-    public void TurnOffCanvas(int cnt)  // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+    // 미치 : 다른 클래스에서 uiManager에게 직접 접근하지 않게하기 위한 함수.
+    public void TurnOffCanvas(int cnt)  
     {
         uIManager.GetComponent<UIManager>().TurnOffCanvas(cnt);
     }

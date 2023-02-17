@@ -1,3 +1,4 @@
+//지오 : 중립, 파랑, 빨강 스틱맨 부모 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,4 @@
+//지오 : 오브젝트 풀링 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject select = null;
 
+    //2개씩 나오기도함   ????
 /*         foreach (GameObject item in pools[index])
         {
             if (!item.activeSelf)

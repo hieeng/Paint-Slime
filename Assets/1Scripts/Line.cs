@@ -1,3 +1,4 @@
+//지오 : 스틱맨들을 정렬해주는 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

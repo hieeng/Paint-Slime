@@ -1,3 +1,4 @@
+//미치 : 파란색, 빨간색 탄환 부모 스크립트
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,19 +12,6 @@ public class Projectile : MonoBehaviour
 
     float MadeTime;
 
-/*     void Awake()
-    {
-        MadeTime = Time.time;
-    }
-
-    void Update()
-    {
-        if(Time.time - MadeTime > 5.0f) Destroy(gameObject);
-
-        if(GameManager.Instance.timeOver == true) Destroy(gameObject);
-        transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-    } */
-
     protected void Init()
     {
         MadeTime = Time.time;
@@ -36,14 +24,6 @@ public class Projectile : MonoBehaviour
         if(GameManager.Instance.timeOver == true) Destroy(gameObject);
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
     }
-
-
-/*     void OnCollisionEnter(Collision other) 
-    {
-        Play_PaintParticle();
-        //gameObject.SetActive(false);
-        Destroy(gameObject);
-    } */
 
     protected void Play_PaintParticle()
     {

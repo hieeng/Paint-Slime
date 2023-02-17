@@ -23,7 +23,6 @@ public class BlueProject : Projectile
         {
             if (!GameManager.Instance.GetIsFever())
             {
-                Debug.Log("1");
                 GameManager.Instance.PlusFeverGage();
             }
         }
