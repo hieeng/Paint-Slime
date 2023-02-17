@@ -1,4 +1,4 @@
-
+//지오 : 게임매니저
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] UIManager uIManager;
     [SerializeField] ObjectManager objectManager;
     [SerializeField] Player player;
-    [SerializeField] Slime slime;
     [SerializeField] Projectile projectile;
     [SerializeField] AI ai;
     [SerializeField] CameraScript cam;
     [SerializeField] ObjectManager stickManBlue;
     [SerializeField] ObjectManager stickManRed;
     [SerializeField] RagdollScript ragdoll;
-    [SerializeField] White white;
 
     public Transform pointBlue;
     public Transform pointRed;
